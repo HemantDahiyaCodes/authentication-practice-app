@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <title>Log In</title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    Go to Sign Up: <a href="/sign-up">Sign up</a>
+  <% if (locals.user) {%>
+    <h1>WELCOME BACK <%= locals.user.username %></h1>
+    <a href="/log-out">LOG OUT</a>
+  <% } else { %>
+    <h1>please log in</h1>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <button type="submit">Log In</button>
+    </form>
+
+    <h2><a href="/sign-up">Sign up here</a></h2>
+  <%}%>
 </body>
 </html>
